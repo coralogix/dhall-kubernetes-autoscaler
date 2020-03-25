@@ -1,1 +1,0 @@
-{ VerticalPodAutoscaler = ./VerticalPodAutoscaler.dhall }

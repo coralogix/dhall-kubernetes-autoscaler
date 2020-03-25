@@ -8,35 +8,47 @@ let ContainerResourcePolicy =
       { Type =
           { containerName : Text
           , mode : Text
-          , minAllowed : Prelude.Map.Type Text Text
-          , maxAllowed : Prelude.Map.Type Text Text
+          , minAllowed : Optional (Prelude.Map.Type Text Text)
+          , maxAllowed : Optional (Prelude.Map.Type Text Text)
           }
-      , default = {=}
+      , default =
+          { minAllowed = None (Prelude.Map.Type Text Text)
+          , maxAllowed = None (Prelude.Map.Type Text Text)
+          }
       }
 
 let PodUpdatePolicy =
       { Type = { updateMode : Text }, default.updateMode = "Off" }
 
 let PodResourcePolicy =
-      { Type = { containerPolicies : List ContainerResourcePolicy.Type }
-      , default = {=}
+      { Type =
+          { containerPolicies : Optional (List ContainerResourcePolicy.Type) }
+      , default.containerPolicies = None (List ContainerResourcePolicy.Type)
       }
 
 let RecommendedContainerResources =
       { Type =
           { containerName : Text
-          , target : Prelude.Map.Type Text Text
-          , lowerBound : Prelude.Map.Type Text Text
-          , upperBound : Prelude.Map.Type Text Text
-          , uncappedTarget : Prelude.Map.Type Text Text
+          , target : Optional (Prelude.Map.Type Text Text)
+          , lowerBound : Optional (Prelude.Map.Type Text Text)
+          , upperBound : Optional (Prelude.Map.Type Text Text)
+          , uncappedTarget : Optional (Prelude.Map.Type Text Text)
           }
-      , default = {=}
+      , default =
+          { target = None (Prelude.Map.Type Text Text)
+          , lowerBound = None (Prelude.Map.Type Text Text)
+          , upperBound = None (Prelude.Map.Type Text Text)
+          , uncappedTarget = None (Prelude.Map.Type Text Text)
+          }
       }
 
 let RecommendedPodResources =
       { Type =
-          { containerRecommendation : List RecommendedContainerResources.Type }
-      , default = {=}
+          { containerRecommendation :
+              Optional (List RecommendedContainerResources.Type)
+          }
+      , default.containerRecommendation =
+          None (List RecommendedContainerResources.Type)
       }
 
 let VerticalPodAutoscalerCondition =
@@ -62,9 +74,9 @@ let VerticalPodAutoscalerSpec =
 let VerticalPodAutoscalerStatus =
       { Type =
           { recommendation : RecommendedPodResources.Type
-          , conditions : List VerticalPodAutoscalerCondition.Type
+          , conditions : Optional (List VerticalPodAutoscalerCondition.Type)
           }
-      , default = {=}
+      , default.conditions = None (List VerticalPodAutoscalerCondition.Type)
       }
 
 let VerticalPodAutoscaler =
@@ -87,9 +99,9 @@ let VerticalPodAutoscalerList =
           { apiVersion : Text
           , kind : Text
           , metadata : Kubernetes.ObjectMeta.Type
-          , items : List VerticalPodAutoscaler.Type
+          , items : Optional (List VerticalPodAutoscaler.Type)
           }
-      , default = {=}
+      , default.items = None (List VerticalPodAutoscaler.Type)
       }
 
 in  { ContainerResourcePolicy = ContainerResourcePolicy
