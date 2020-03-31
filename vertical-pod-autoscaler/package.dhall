@@ -12,9 +12,9 @@ let ContainerResourcePolicy =
           , maxAllowed : Optional (Prelude.Map.Type Text Text)
           }
       , default =
-          { minAllowed = None (Prelude.Map.Type Text Text)
-          , maxAllowed = None (Prelude.Map.Type Text Text)
-          }
+        { minAllowed = None (Prelude.Map.Type Text Text)
+        , maxAllowed = None (Prelude.Map.Type Text Text)
+        }
       }
 
 let PodUpdatePolicy =
@@ -35,11 +35,11 @@ let RecommendedContainerResources =
           , uncappedTarget : Optional (Prelude.Map.Type Text Text)
           }
       , default =
-          { target = None (Prelude.Map.Type Text Text)
-          , lowerBound = None (Prelude.Map.Type Text Text)
-          , upperBound = None (Prelude.Map.Type Text Text)
-          , uncappedTarget = None (Prelude.Map.Type Text Text)
-          }
+        { target = None (Prelude.Map.Type Text Text)
+        , lowerBound = None (Prelude.Map.Type Text Text)
+        , upperBound = None (Prelude.Map.Type Text Text)
+        , uncappedTarget = None (Prelude.Map.Type Text Text)
+        }
       }
 
 let RecommendedPodResources =
@@ -88,10 +88,10 @@ let VerticalPodAutoscaler =
           , status : Optional VerticalPodAutoscalerStatus.Type
           }
       , default =
-          { apiVersion = "autoscaling.k8s.io/v1beta2"
-          , kind = "VerticalPodAutoscaler"
-          , status = None VerticalPodAutoscalerStatus.Type
-          }
+        { apiVersion = "autoscaling.k8s.io/v1beta2"
+        , kind = "VerticalPodAutoscaler"
+        , status = None VerticalPodAutoscalerStatus.Type
+        }
       }
 
 let VerticalPodAutoscalerList =
